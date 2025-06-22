@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maphaha Tivona Ndou | Front-End Developer & Mathematician</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #8e2de2;
+      --secondary: #4a00e0;
+      --dark: #121212;
+      --darker: #0a0a0a;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --dark-gray: #343a40;
+      --accent: #00c6ff;
+      --accent-dark: #0077ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--darker);
+      color: var(--light);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 10%;
+      background: rgba(10, 10, 10, 0.9);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(142, 45, 226, 0.2);
+    }
+
+    nav.scrolled {
+      padding: 1rem 10%;
+      background: rgba(10, 10, 10, 0.95);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+      transition: transform 0.3s ease;
+    }
+
+    .logo-img:hover {
+      transform: scale(1.05);
+    }
+
+    nav h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li {
+      list-style: none;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--light);
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    nav ul li a:hover {
+      color: var(--accent);
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background: linear-gradient(to right, var(--accent), var(--primary));
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--light);
+    }
+
+    /* Hero Section - Enhanced Design */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 0 10%;
+      position: relative;
+      overflow: hidden;
+      background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80') no-repeat center center/cover;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, 
+                    rgba(74, 0, 224, 0.2) 0%, 
+                    rgba(142, 45, 226, 0.3) 50%, 
+                    rgba(0, 198, 255, 0.2) 100%);
+      z-index: -2;
+    }
+
+    /* Shooting stars animation */
+    .shooting-star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      animation: shootingStar linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes shootingStar {
+      0% {
+        transform: translate(0, 0);
+        opacity: 1;
+      }
+      70% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate(100px, 100px);
+        opacity: 0;
+      }
+    }
+
+    .hero-content {
+      max-width: 800px;
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1s ease;
+    }
+
+    .hero h2 {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(to right, var(--light), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.2;
+      text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      margin-bottom: 2.5rem;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero .accent {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: inline-block;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(142, 45, 226, 0.4);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-outline {
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: var(--accent);
+      color: var(--darker);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 198, 255, 0.3);
+    }
+
+    /* Floating elements */
+    .floating-elements {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(5px);
+      animation: float 15s infinite linear;
+    }
+
+    .floating-element:nth-child(1) {
+      width: 100px;
+      height: 100px;
+      top: 20%;
+      left: 10%;
+      animation-duration: 20s;
+      background: radial-gradient(circle, rgba(142, 45, 226, 0.2) 0%, transparent 70%);
+    }
+
+    .floating-element:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      top: 60%;
+      left: 80%;
+      animation-duration: 25s;
+      animation-delay: 2s;
+      background: radial-gradient(circle, rgba(0, 198, 255, 0.2) 0%, transparent 70%);
+    }
+
+    .floating-element:nth-child(3) {
+      width: 80px;
+      height: 80px;
+      top: 80%;
+      left: 20%;
+      animation-duration: 18s;
+      animation-delay: 4s;
+      background: radial-gradient(circle, rgba(74, 0, 224, 0.2) 0%, transparent 70%);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      25% {
+        transform: translate(50px, 50px) rotate(90deg);
+      }
+      50% {
+        transform: translate(0, 100px) rotate(180deg);
+      }
+      75% {
+        transform: translate(-50px, 50px) rotate(270deg);
+      }
+      100% {
+        transform: translate(0, 0) rotate(360deg);
+      }
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 10%;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      margin-bottom: 3.5rem;
+      text-align: center;
+      position: relative;
+      color: white;
+      font-weight: 700;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 5px;
+      background: linear-gradient(to right, var(--accent), var(--primary));
+      border-radius: 3px;
+    }
+
+    /* About Section */
+    #about {
+      background: linear-gradient(to bottom, #0a0a0a, #131313);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-img {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      transition: transform 0.5s ease;
+      border: 2px solid rgba(142, 45, 226, 0.3);
+      position: relative;
+      width: 350px;
+      height: 350px;
+      margin: 0 auto;
+    }
+
+    .about-img::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, 
+                    rgba(142, 45, 226, 0.1) 0%, 
+                    rgba(0, 198, 255, 0.1) 100%);
+      z-index: 1;
+    }
+
+    .about-img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 20px 40px rgba(142, 45, 226, 0.3);
+    }
+
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+      position: relative;
+      z-index: 0;
+    }
+
+    .about-img:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-text p {
+      margin-bottom: 1.8rem;
+      color: #cccccc;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .about-text .highlight {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* Skills Section - Updated Compact Layout */
+    #skills {
+      background: linear-gradient(to bottom, #131313, #0a0a0a);
+      padding: 6rem 10%;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .skill-card {
+      background: linear-gradient(145deg, #1a1a2e, #16213e);
+      border-radius: 15px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(74, 0, 224, 0.2);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 25px rgba(142, 45, 226, 0.3);
+    }
+
+    .skill-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(142, 45, 226, 0.15);
+      border-radius: 50%;
+      font-size: 2rem;
+      color: var(--accent);
+      border: 2px solid rgba(142, 45, 226, 0.4);
+    }
+
+    .skill-card h5 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: white;
+    }
+
+    .skill-card p {
+      color: #aaaaaa;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* Projects Section */
+    #projects {
+      background: linear-gradient(to bottom, #0a0a0a, #131313);
+    }
+
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    .project {
+      background: linear-gradient(145deg, #1a1a2e, #16213e);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border: 1px solid rgba(74, 0, 224, 0.2);
+    }
+
+    .project:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 40px rgba(142, 45, 226, 0.25);
+    }
+
+    .project-img {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-img::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(10, 10, 10, 0.8), transparent);
+      z-index: 1;
+    }
+
+    .project-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    .project:hover .project-img img {
+      transform: scale(1.1);
+    }
+
+    .project-info {
+      padding: 1.8rem;
+    }
+
+    .project-info h4 {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      color: white;
+      font-weight: 600;
+    }
+
+    .project-info p {
+      color: #aaaaaa;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    .project-links a {
+      padding: 0.6rem 1.4rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .project-links .btn-live {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .project-links .btn-live:hover {
+      background: linear-gradient(to right, var(--secondary), var(--primary));
+      transform: translateY(-3px);
+    }
+
+    .project-links .btn-code {
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .project-links .btn-code:hover {
+      background: rgba(0, 198, 255, 0.1);
+      transform: translateY(-3px);
+    }
+
+    /* Project Demos */
+    .project-demo {
+      background: linear-gradient(145deg, #1a1a2e, #16213e);
+      padding: 3rem;
+      border-radius: 15px;
+      margin-top: 3rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(74, 0, 224, 0.2);
+    }
+
+    .demo-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: white;
+      text-align: center;
+      font-weight: 600;
+      background: linear-gradient(to right, var(--accent), var(--primary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .demo-description {
+      color: #aaaaaa;
+      margin-bottom: 2rem;
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    /* Chess Game Demo */
+    #chess-demo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .chess-container {
+      background: #2c2c54;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .chessboard {
+      display: grid;
+      grid-template-columns: repeat(8, 70px);
+      grid-template-rows: repeat(8, 70px);
+      gap: 0;
+      border: 3px solid #4a4a8a;
+      margin-bottom: 1.5rem;
+      background: #e0d8c0;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .chess-cell {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 50px;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      transition: background 0.2s ease;
+    }
+
+    .light {
+      background-color: #f0d9b5;
+    }
+
+    .dark {
+      background-color: #b58863;
+    }
+
+    .selected {
+      background-color: rgba(0, 200, 0, 0.5);
+    }
+
+    .possible-move::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .chess-labels {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 10px;
+      color: #aaaaaa;
+      font-weight: 500;
+    }
+
+    .chess-controls {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      justify-content: center;
+    }
+
+    .chess-controls button {
+      padding: 0.8rem 1.8rem;
+      border-radius: 5px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-chess {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .btn-chess:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(142, 45, 226, 0.4);
+    }
+
+    /* Typing Test Demo */
+    .typing-test {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #2c2c54;
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .typing-text {
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #f0f0f0;
+      line-height: 1.8;
+      max-width: 800px;
+      padding: 1.5rem;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .typing-input {
+      width: 100%;
+      max-width: 700px;
+      padding: 1rem 1.5rem;
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .typing-input:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    .typing-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 1rem;
+    }
+
+    .stat-box {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.2rem 1.8rem;
+      border-radius: 10px;
+      min-width: 120px;
+    }
+
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      color: #aaaaaa;
+      margin-top: 0.5rem;
+    }
+
+    /* Math Quiz Demo */
+    .math-quiz {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #2c2c54;
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .quiz-question {
+      font-size: 1.8rem;
+      margin-bottom: 2.5rem;
+      color: white;
+      text-align: center;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .quiz-option {
+      padding: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .quiz-option:hover {
+      background: rgba(142, 45, 226, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .quiz-feedback {
+      margin-top: 2rem;
+      font-size: 1.4rem;
+      min-height: 2.5rem;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .correct {
+      color: #4caf50;
+      background: rgba(76, 175, 80, 0.1);
+    }
+
+    .incorrect {
+      color: #f44336;
+      background: rgba(244, 67, 54, 0.1);
+    }
+
+    /* Contact Section */
+    #contact {
+      background: linear-gradient(to bottom, #131313, #0a0a0a);
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-item:hover {
+      transform: translateX(10px);
+    }
+
+    .contact-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--primary), var(--secondary));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .contact-text h4 {
+      color: white;
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .contact-text p, .contact-text a {
+      color: #aaaaaa;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .contact-text a:hover {
+      color: var(--accent);
+    }
+
+    /* Social Media in Contact Section */
+    .social-media-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .social-media-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .social-media-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--primary), var(--secondary));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-media-link:hover {
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 5px 15px rgba(142, 45, 226, 0.4);
+    }
+
+    .contact-form {
+      background: linear-gradient(145deg, #1a1a2e, #16213e);
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.8rem;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 1px solid rgba(142, 45, 226, 0.4);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    textarea.form-control {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      display: block;
+      margin: 0 auto;
+      margin-top: 1.5rem;
+      box-shadow: 0 4px 15px rgba(142, 45, 226, 0.4);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(142, 45, 226, 0.6);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 4rem 10%;
+      background: #0a0a0a;
+      color: #aaa;
+      border-top: 1px solid rgba(142, 45, 226, 0.2);
+    }
+
+    .copyright {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: #777;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .float {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      nav, section {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .about-img {
+        max-width: 350px;
+        margin: 0 auto;
+      }
+
+      .hero h2 {
+        font-size: 3.2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 1.2rem 5%;
+      }
+      
+      nav ul {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: rgba(10, 10, 10, 0.95);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 3rem;
+        gap: 2.5rem;
+        transition: left 0.4s ease;
+      }
+      
+      nav ul.active {
+        left: 0;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      section {
+        padding: 4rem 5%;
+      }
+      
+      .hero h2 {
+        font-size: 2.8rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .section-title {
+        font-size: 2.4rem;
+      }
+
+      .project-demo {
+        padding: 2rem;
+      }
+
+      .chessboard {
+        grid-template-columns: repeat(8, 50px);
+        grid-template-rows: repeat(8, 50px);
+      }
+
+      .chess-cell {
+        width: 50px;
+        height: 50px;
+        font-size: 40px;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero h2 {
+        font-size: 2.3rem;
+      }
+      
+      .buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .quiz-options {
+        grid-template-columns: 1fr;
+      }
+
+      .typing-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .project-img {
+        height: 180px;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="logo">
+      <img src="https://i.postimg.cc/YCjxyXtT/Screenshot-175.png" alt="Maphaha Tivona Ndou" class="logo-img">
+      <h1>Maphaha Tivona Ndou</h1>
+    </div>
+    <ul id="nav-menu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="floating-elements">
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+    </div>
+    <div class="hero-content">
+      <h2>Maphaha Tivona Ndou</h2>
+      <p>Front-End Developer | Mathematics Student | <span class="accent">Creative Problem Solver</span></p>
+      <div class="buttons">
+        <a href="#projects" class="btn btn-primary pulse">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h3 class="section-title">About Me</h3>
+    <div class="about-content">
+      <div class="about-img float">
+        <img src="https://i.postimg.cc/YCjxyXtT/Screenshot-175.png" alt="Maphaha Tivona Ndou">
+      </div>
+      <div class="about-text">
+        <p>I am a <span class="highlight">19-year-old BSc in Mathematics and Applied Mathematics student</span> at UNISA with distinctions in Computer Science, Physics, and Advanced Mathematics. I'm a passionate tech enthusiast who thrives in independent learning and problem-solving environments.</p>
+        <p>I specialize in front-end development using HTML, CSS, and JavaScript, and I've built interactive projects like a chess game, typing speed tester, and math quiz app. I've also participated in coding bootcamps such as WeThinkCode_, gaining real-world coding experience and teamwork exposure.</p>
+        <p>Through platforms like Coursera and Udemy, I continuously expand my skills in Python, Java, C++, and web development. When not coding, I mentor fellow students and explore how mathematics and technology can solve real-world problems.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <h3 class="section-title">My Skills & Technologies</h3>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">
+          <i class="fab fa-html5"></i>
+        </div>
+        <h5>HTML5</h5>
+        <p>Semantic markup, accessibility standards, and modern HTML5 features for responsive web design.</p>
+      </div>
+      
+      <div class="skill-card">
+        <div class="skill-icon">
+          <i class="fab fa-css3-alt"></i>
+        </div>
+        <h5>CSS3</h5>
+        <p>Advanced styling, animations, Flexbox, Grid, and responsive design principles.</p>
+      </div>
+      
+      <div class="skill-card">
+        <div class="skill-icon">
+          <i class="fab fa-js"></i>
+        </div>
+        <h5>JavaScript</h5>
+        <p>ES6+ features, DOM manipulation, async programming, and modern JS frameworks.</p>
+      </div>
+      
+      <div class="skill-card">
+        <div class="skill-icon">
+          <i class="fab fa-react"></i>
+        </div>
+        <h5>React</h5>
+        <p>Component-based architecture, hooks, state management, and React ecosystem.</p>
+      </div>
+      
+      <div class="skill-card">
+        <div class="skill-icon">
+          <i class="fab fa-python"></i>
+        </div>
+        <h5>Python</h5>
+        <p>Algorithm development, data analysis, and backend programming with Python.</p>
+      </div>
+      
+      <div class="skill-card">
+        <div class="skill-icon">
+          <i class="fab fa-git-alt"></i>
+        </div>
+        <h5>Git</h5>
+        <p>Version control, branching strategies, and collaborative development workflows.</p>
+      </div>
+      
+      <div class="skill-card">
+        <div class="skill-icon">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <h5>Responsive Design</h5>
+        <p>Mobile-first approach, media queries, and adaptive layouts for all devices.</p>
+      </div>
+      
+      <div class="skill-card">
+        <div class="skill-icon">
+          <i class="fas fa-paint-brush"></i>
+        </div>
+        <h5>UI/UX</h5>
+        <p>User-centered design principles, wireframing, and prototyping for optimal experiences.</p>
+      </div>
+      
+      <div class="skill-card">
+        <div class="skill-icon">
+          <i class="fab fa-node-js"></i>
+        </div>
+        <h5>Node.js</h5>
+        <p>Server-side JavaScript, Express framework, and building RESTful APIs.</p>
+      </div>
+      
+      <div class="skill-card">
+        <div class="skill-icon">
+          <i class="fas fa-database"></i>
+        </div>
+        <h5>MongoDB</h5>
+        <p>NoSQL database design, CRUD operations, and MongoDB Atlas cloud services.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h3 class="section-title">My Projects</h3>
+    <div class="project-list">
+      <!-- Chess Game Project -->
+      <div class="project">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Chess Game">
+        </div>
+        <div class="project-info">
+          <h4>Interactive Chess Game</h4>
+          <p>A fully functional two-player chess game with move validation, piece capturing, and game state tracking built with pure JavaScript.</p>
+          <div class="project-links">
+            <a href="#chess-demo" class="btn-live"><i class="fas fa-play"></i> Live Demo</a>
+            <a href="#" class="btn-code"><i class="fab fa-github"></i> View Code</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Typing Test Project -->
+      <div class="project">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Typing Speed Test">
+        </div>
+        <div class="project-info">
+          <h4>Typing Speed Tester</h4>
+          <p>Measure your typing speed (WPM) and accuracy with this interactive application that provides real-time feedback and performance statistics.</p>
+          <div class="project-links">
+            <a href="#typing-demo" class="btn-live"><i class="fas fa-play"></i> Live Demo</a>
+            <a href="#" class="btn-code"><i class="fab fa-github"></i> View Code</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Math Quiz Project -->
+      <div class="project">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Math Quiz">
+        </div>
+        <div class="project-info">
+          <h4>Math Quiz App</h4>
+          <p>An educational game that generates random math questions across different difficulty levels, tracks scores, and provides instant feedback.</p>
+          <div class="project-links">
+            <a href="#math-demo" class="btn-live"><i class="fas fa-play"></i> Live Demo</a>
+            <a href="#" class="btn-code"><i class="fab fa-github"></i> View Code</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Chess Game Demo -->
+    <div class="project-demo" id="chess-demo">
+      <h4 class="demo-title">Chess Game Demo</h4>
+      <p class="demo-description">Play a game of chess against yourself! Click on a piece to select it, then click on a destination square to move. The game includes basic move validation.</p>
+      
+      <div class="chess-container">
+        <div class="chess-labels">
+          <div>A</div>
+          <div>B</div>
+          <div>C</div>
+          <div>D</div>
+          <div>E</div>
+          <div>F</div>
+          <div>G</div>
+          <div>H</div>
+        </div>
+        <div class="chessboard" id="chessboard"></div>
+        <div class="chess-labels">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+          <div>5</div>
+          <div>6</div>
+          <div>7</div>
+          <div>8</div>
+        </div>
+      </div>
+      
+      <div class="chess-controls">
+        <button id="reset-chess" class="btn-chess"><i class="fas fa-redo"></i> Reset Board</button>
+        <button id="undo-move" class="btn-chess"><i class="fas fa-undo"></i> Undo Move</button>
+      </div>
+    </div>
+    
+    <!-- Typing Test Demo -->
+    <div class="project-demo" id="typing-demo">
+      <h4 class="demo-title">Typing Speed Test Demo</h4>
+      <p class="demo-description">Test your typing speed and accuracy! Type the text below as quickly and accurately as possible. The test will begin when you start typing.</p>
+      
+      <div class="typing-test">
+        <div class="typing-text" id="typing-text">
+          The quick brown fox jumps over the lazy dog. This famous pangram contains every letter of the English alphabet and is perfect for testing typing skills. How fast can you type it?
+        </div>
+        
+        <textarea class="typing-input" id="typing-input" placeholder="Start typing here..."></textarea>
+        
+        <div class="typing-stats">
+          <div class="stat-box">
+            <div class="stat-value" id="wpm">0</div>
+            <div class="stat-label">Words Per Minute</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="accuracy">0%</div>
+            <div class="stat-label">Accuracy</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="time">0s</div>
+            <div class="stat-label">Time</div>
+          </div>
+        </div>
+        
+        <button id="reset-typing" class="btn btn-outline" style="margin-top: 1.5rem;"><i class="fas fa-sync-alt"></i> Reset Test</button>
+      </div>
+    </div>
+    
+    <!-- Math Quiz Demo -->
+    <div class="project-demo" id="math-demo">
+      <h4 class="demo-title">Math Quiz Demo</h4>
+      <p class="demo-description">Test your math skills with these randomly generated questions. Select the correct answer and get immediate feedback.</p>
+      
+      <div class="math-quiz">
+        <div class="quiz-question" id="quiz-question"></div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+        <button id="next-question" class="btn btn-primary" style="margin-top: 1.5rem;"><i class="fas fa-arrow-right"></i> Next Question</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h3 class="section-title">Get In Touch</h3>
+    <div class="contact-content">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-text">
+            <h4>Email</h4>
+            <a href="mailto:maphahandou7@gmail.com">maphahandou7@gmail.com</a>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-text">
+            <h4>Phone</h4>
+            <a href="tel:+27766628724">076 662 8724</a>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-text">
+            <h4>Location</h4>
+            <p>Pretoria, South Africa</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="contact-text">
+            <h4>Education</h4>
+            <p>BSc Mathematics at UNISA</p>
+          </div>
+        </div>
+
+        <!-- Social Media in Contact Section -->
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-share-alt"></i>
+          </div>
+          <div class="contact-text">
+            <h4>Social Media</h4>
+            <div class="social-media-links">
+              <a href="https://www.tiktok.com/@_ntandohh?_t=ZM-8xOsy1viVRY&_r=1" class="social-media-link" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+              <a href="https://whatsapp.com/dl/+27766628724" class="social-media-link" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://www.facebook.com/profile.php?id=100088807549266" class="social-media-link" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/itzzyourboymistoh?igsh=MXd5ZTRibm9qam8zNA==" class="social-media-link" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://github.com/" class="social-media-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+              <a href="https://www.linkedin.com/" class="social-media-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" class="form-control" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p class="copyright">&copy; 2025 Maphaha Tivona Ndou. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Create shooting stars
+    function createShootingStars() {
+      const hero = document.querySelector('.hero');
+      for (let i = 0; i < 5; i++) {
+        const star = document.createElement('div');
+        star.className = 'shooting-star';
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        hero.appendChild(star);
+      }
+    }
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      menuToggle.innerHTML = navMenu.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('#nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // Chess Game Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      createShootingStars();
+      
+      // Initialize chessboard
+      const chessboard = document.getElementById('chessboard');
+      const resetChessBtn = document.getElementById('reset-chess');
+      const undoBtn = document.getElementById('undo-move');
+      
+      // Chess pieces (using Unicode characters)
+      const pieces = {
+        'r': '♜', 'n': '♞', 'b': '♝', 'q': '♛', 'k': '♚', 'p': '♟',
+        'R': '♖', 'N': '♘', 'B': '♗', 'Q': '♕', 'K': '♔', 'P': '♙'
+      };
+      
+      // Initial board setup
+      const initialBoard = [
+        ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
+        ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
+        ['', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
+        ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R']
+      ];
+      
+      let board = JSON.parse(JSON.stringify(initialBoard));
+      let selectedPiece = null;
+      let currentPlayer = 'white';
+      let moveHistory = [];
+      
+      // Render chessboard
+      function renderChessboard() {
+        chessboard.innerHTML = '';
+        
+        for (let row = 0; row < 8; row++) {
+          for (let col = 0; col < 8; col++) {
+            const cell = document.createElement('div');
+            cell.className = `chess-cell ${(row + col) % 2 === 0 ? 'light' : 'dark'}`;
+            cell.dataset.row = row;
+            cell.dataset.col = col;
+            
+            const piece = board[row][col];
+            if (piece) {
+              cell.textContent = pieces[piece];
+              cell.style.color = piece === piece.toLowerCase() ? 'black' : 'white';
+              cell.style.fontWeight = 'bold';
+            }
+            
+            cell.addEventListener('click', () => handleCellClick(row, col));
+            chessboard.appendChild(cell);
+          }
+        }
+      }
+      
+      // Handle cell click
+      function handleCellClick(row, col) {
+        const piece = board[row][col];
+        
+        // If no piece is selected
+        if (selectedPiece === null) {
+          // If clicking on an empty square, do nothing
+          if (!piece) return;
+          
+          // Check if the piece belongs to the current player
+          const isWhitePiece = piece === piece.toUpperCase();
+          if ((currentPlayer === 'white' && !isWhitePiece) || (currentPlayer === 'black' && isWhitePiece)) {
+            return;
+          }
+          
+          // Select the piece
+          selectedPiece = { row, col };
+          highlightCell(row, col, 'selected');
+          highlightPossibleMoves(row, col);
+          return;
+        }
+        
+        // If clicking on the same piece, deselect it
+        if (selectedPiece.row === row && selectedPiece.col === col) {
+          clearHighlights();
+          selectedPiece = null;
+          return;
+        }
+        
+        // Try to move the piece
+        if (isValidMove(selectedPiece.row, selectedPiece.col, row, col)) {
+          // Save move to history
+          moveHistory.push({
+            from: { row: selectedPiece.row, col: selectedPiece.col },
+            to: { row, col },
+            piece: board[selectedPiece.row][selectedPiece.col],
+            captured: board[row][col]
+          });
+          
+          // Move the piece
+          board[row][col] = board[selectedPiece.row][selectedPiece.col];
+          board[selectedPiece.row][selectedPiece.col] = '';
+          
+          // Switch player
+          currentPlayer = currentPlayer === 'white' ? 'black' : 'white';
+        }
+        
+        // Clear selection and highlights
+        clearHighlights();
+        selectedPiece = null;
+        renderChessboard();
+      }
+      
+      // Check if move is valid (simplified logic)
+      function isValidMove(fromRow, fromCol, toRow, toCol) {
+        const piece = board[fromRow][fromCol];
+        if (!piece) return false;
+        
+        // Pawn movement logic
+        if (piece.toLowerCase() === 'p') {
+          const direction = piece === 'P' ? -1 : 1;
+          const startRow = piece === 'P' ? 6 : 1;
+          
+          // Forward move
+          if (fromCol === toCol) {
+            // Single move forward
+            if (toRow === fromRow + direction && board[toRow][toCol] === '') {
+              return true;
+            }
+            // Double move from start position
+            if (fromRow === startRow && toRow === fromRow + 2 * direction && 
+                board[fromRow + direction][toCol] === '' && board[toRow][toCol] === '') {
+              return true;
+            }
+          }
+          // Capture
+          else if (Math.abs(toCol - fromCol) === 1 && toRow === fromRow + direction && 
+                  board[toRow][toCol] !== '') {
+            return true;
+          }
+        }
+        // Rook movement
+        else if (piece.toLowerCase() === 'r') {
+          if (fromRow !== toRow && fromCol !== toCol) return false;
+          
+          // Check if path is clear
+          if (fromRow === toRow) {
+            const start = Math.min(fromCol, toCol) + 1;
+            const end = Math.max(fromCol, toCol);
+            for (let col = start; col < end; col++) {
+              if (board[fromRow][col] !== '') return false;
+            }
+          } else {
+            const start = Math.min(fromRow, toRow) + 1;
+            const end = Math.max(fromRow, toRow);
+            for (let row = start; row < end; row++) {
+              if (board[row][fromCol] !== '') return false;
+            }
+          }
+          return true;
+        }
+        // Knight movement
+        else if (piece.toLowerCase() === 'n') {
+          const rowDiff = Math.abs(toRow - fromRow);
+          const colDiff = Math.abs(toCol - fromCol);
+          return (rowDiff === 2 && colDiff === 1) || (rowDiff === 1 && colDiff === 2);
+        }
+        // Basic movement for other pieces
+        return true;
+      }
+      
+      // Highlight possible moves
+      function highlightPossibleMoves(row, col) {
+        for (let r = 0; r < 8; r++) {
+          for (let c = 0; c < 8; c++) {
+            if (isValidMove(row, col, r, c)) {
+              highlightCell(r, c, 'possible-move');
+            }
+          }
+        }
+      }
+      
+      // Highlight a cell
+      function highlightCell(row, col, className) {
+        const cells = document.querySelectorAll('.chess-cell');
+        for (const cell of cells) {
+          if (parseInt(cell.dataset.row) === row && parseInt(cell.dataset.col) === col) {
+            cell.classList.add(className);
+          }
+        }
+      }
+      
+      // Clear all highlights
+      function clearHighlights() {
+        const cells = document.querySelectorAll('.chess-cell');
+        for (const cell of cells) {
+          cell.classList.remove('selected', 'possible-move');
+        }
+      }
+      
+      // Reset chess board
+      resetChessBtn.addEventListener('click', () => {
+        board = JSON.parse(JSON.stringify(initialBoard));
+        selectedPiece = null;
+        currentPlayer = 'white';
+        moveHistory = [];
+        renderChessboard();
+      });
+      
+      // Undo last move
+      undoBtn.addEventListener('click', () => {
+        if (moveHistory.length === 0) return;
+        
+        const lastMove = moveHistory.pop();
+        board[lastMove.from.row][lastMove.from.col] = lastMove.piece;
+        board[lastMove.to.row][lastMove.to.col] = lastMove.captured;
+        currentPlayer = currentPlayer === 'white' ? 'black' : 'white';
+        renderChessboard();
+      });
+      
+      // Initial render
+      renderChessboard();
+    });
+    
+    // Typing Test Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const typingText = document.getElementById('typing-text');
+      const typingInput = document.getElementById('typing-input');
+      const wpmElement = document.getElementById('wpm');
+      const accuracyElement = document.getElementById('accuracy');
+      const timeElement = document.getElementById('time');
+      const resetTypingBtn = document.getElementById('reset-typing');
+      
+      const sampleText = typingText.textContent;
+      let startTime;
+      let timerInterval;
+      let errors = 0;
+      
+      typingInput.addEventListener('input', () => {
+        if (!startTime) {
+          startTime = new Date();
+          timerInterval = setInterval(updateTimer, 1000);
+        }
+        
+        const typedText = typingInput.value;
+        const sampleTextLength = sampleText.length;
+        let correctChars = 0;
+        
+        // Compare typed text with sample text
+        for (let i = 0; i < typedText.length; i++) {
+          if (i < sampleTextLength) {
+            if (typedText[i] === sampleText[i]) {
+              correctChars++;
+            } else {
+              errors++;
+            }
+          }
+        }
+        
+        // Calculate accuracy
+        const accuracy = typedText.length > 0 ? Math.round((correctChars / typedText.length) * 100) : 0;
+        accuracyElement.textContent = `${accuracy}%`;
+        
+        // Calculate WPM
+        if (startTime) {
+          const currentTime = new Date();
+          const elapsedSeconds = (currentTime - startTime) / 1000;
+          const minutes = elapsedSeconds / 60;
+          const wpm = typedText.length > 0 ? Math.round((typedText.length / 5) / minutes) : 0;
+          wpmElement.textContent = wpm;
+        }
+        
+        // Check if typing is complete
+        if (typedText === sampleText) {
+          clearInterval(timerInterval);
+          typingInput.disabled = true;
+        }
+      });
+      
+      function updateTimer() {
+        if (startTime) {
+          const currentTime = new Date();
+          const elapsedSeconds = Math.floor((currentTime - startTime) / 1000);
+          timeElement.textContent = `${elapsedSeconds}s`;
+        }
+      }
+      
+      resetTypingBtn.addEventListener('click', () => {
+        typingInput.value = '';
+        typingInput.disabled = false;
+        wpmElement.textContent = '0';
+        accuracyElement.textContent = '0%';
+        timeElement.textContent = '0s';
+        startTime = null;
+        errors = 0;
+        clearInterval(timerInterval);
+        typingInput.focus();
+      });
+    });
+    
+    // Math Quiz Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const quizQuestion = document.getElementById('quiz-question');
+      const quizOptions = document.getElementById('quiz-options');
+      const quizFeedback = document.getElementById('quiz-feedback');
+      const nextQuestionBtn = document.getElementById('next-question');
+      
+      let currentQuestion = {};
+      let score = 0;
+      
+      // Question bank
+      const questions = [
+        {
+          question: "What is the derivative of x²?",
+          options: ["2x", "x", "2", "x²"],
+          answer: 0
+        },
+        {
+          question: "What is the integral of 3x²?",
+          options: ["x³ + C", "3x³ + C", "x³", "3x²"],
+          answer: 0
+        },
+        {
+          question: "What is the value of π (pi) to two decimal places?",
+          options: ["3.14", "3.16", "3.12", "3.18"],
+          answer: 0
+        },
+        {
+          question: "Solve for x: 2x + 5 = 15",
+          options: ["5", "10", "7.5", "2.5"],
+          answer: 0
+        },
+        {
+          question: "What is the area of a circle with radius 5?",
+          options: ["25π", "10π", "50π", "5π"],
+          answer: 0
+        }
+      ];
+      
+      // Initialize quiz
+      generateQuestion();
+      
+      function generateQuestion() {
+        // Get random question
+        const randomIndex = Math.floor(Math.random() * questions.length);
+        currentQuestion = questions[randomIndex];
+        
+        // Display question
+        quizQuestion.textContent = currentQuestion.question;
+        
+        // Display options
+        quizOptions.innerHTML = '';
+        currentQuestion.options.forEach((option, index) => {
+          const button = document.createElement('button');
+          button.className = 'quiz-option';
+          button.textContent = option;
+          button.addEventListener('click', () => checkAnswer(index));
+          quizOptions.appendChild(button);
+        });
+        
+        // Reset feedback
+        quizFeedback.textContent = '';
+        quizFeedback.className = 'quiz-feedback';
+      }
+      
+      function checkAnswer(selectedIndex) {
+        if (selectedIndex === currentQuestion.answer) {
+          quizFeedback.textContent = 'Correct!';
+          quizFeedback.className = 'quiz-feedback correct';
+          score++;
+        } else {
+          quizFeedback.textContent = `Incorrect! The correct answer is: ${currentQuestion.options[currentQuestion.answer]}`;
+          quizFeedback.className = 'quiz-feedback incorrect';
+        }
+        
+        // Disable all buttons after selection
+        const buttons = quizOptions.querySelectorAll('button');
+        buttons.forEach(button => {
+          button.disabled = true;
+        });
+      }
+      
+      nextQuestionBtn.addEventListener('click', generateQuestion);
+    });
+    
+    // Contact Form Submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your message! I will get back to you soon.');
+      this.reset();
+    });
+
+    // Initialize animations
+    document.querySelectorAll('.section-title, .project, .contact-item, .skill-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+    });
+
+    // Animate elements on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section-title, .project, .contact-item, .skill-card').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
